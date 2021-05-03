@@ -1,0 +1,17 @@
+{% extends 'home.html.twig' %}
+{% block title %} liste des postes {% endblock %}
+
+{% block body %}
+hello liste des Transporteur
+<table border='1'>
+{% for ligne in liste %}
+    <tr>
+
+    <td>{{ligne.livreur}}</td>
+     <td>{{ligne.camion}}</td>
+  
+    </tr>
+{% endfor %}
+
+</table>
+{% endblock %}

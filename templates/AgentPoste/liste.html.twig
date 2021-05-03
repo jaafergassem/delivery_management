@@ -1,0 +1,16 @@
+{% extends 'home.html.twig' %}
+{% block title %} liste des postes {% endblock %}
+
+{% block body %}
+hello liste des Agent Poste
+<table border='1'>
+{% for ligne in liste %}
+    <tr>
+    <td>{{ligne.posteOccupe}}</td>
+  
+    </tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

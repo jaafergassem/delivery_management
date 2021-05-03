@@ -1,0 +1,65 @@
+
+
+
+{% extends 'home.html.twig' %}
+{% block title %} 
+ {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="datatable-scroll">
+			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+   <thead>
+	<tr role="row">
+		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+          localisation 		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
+        Nom  poste		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Job Title: activate to sort column ascending">
+			numeroTelephone
+		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="DOB: activate to sort column ascending">
+			Etat
+		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+            code_postale		</th>
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Actions
+		</th>
+	</tr>
+    </thead>
+<tbody>{% for ligne in liste %}
+<tr role="row" class="even">
+		<td class="sorting_1">{{ligne.localisation}}</td>
+		<td><a href="#">{{ligne.nomPoste}}</a></td>
+		<td>{{ligne.numeroTelephone}}</td>
+		<td>{{ligne.Etat}}</td>
+		<td><span class="badge badge-info">{{ligne.codePostal}}</span></td>
+		   
+		<td class="text-center">
+		<button type="button" class="btn btn-outline-primary">Modifier</button>
+		<button type="button" class="btn btn-outline-danger">Supprimer</button>
+		</td>
+	</div>
+	</tr>{% endfor %}
+    </tbody>	
+     </table>
+
+
+
+
+	
+{% endblock%}

@@ -1,0 +1,12 @@
+{% extends 'home.html.twig' %}
+{% block title %} liste des postes {% endblock %}
+
+{% block body %}
+
+ajouter/modifier Camion
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    <input type="submit" >
+{{ form_end(form) }}
+
+{% endblock %}

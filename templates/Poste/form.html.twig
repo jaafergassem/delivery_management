@@ -1,0 +1,145 @@
+{% extends 'home.html.twig' %}
+{% block title %} liste des postes {% endblock %}
+
+{% block body %}
+
+
+
+
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+	
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+ 
+ 
+	
+	
+	
+	<!-- Content area -->
+	<div class="content">
+		
+		
+        	<div class="card-body">
+				
+
+				
+				<form action="#">
+					<fieldset class="mb-3">
+						<legend class="text-uppercase font-size-sm font-weight-bold">Formulaire</legend>
+					
+
+					
+					
+					
+					
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">Localisation</label>
+							<div class="col-md-10">
+								
+								<input type="text" class="form-control"  placeholder="Donner la localisation de Poste...">
+								{{ form_row(form.localisation) }}
+							
+							
+							</div>
+						</div>
+
+
+
+
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">Nom Poste</label>
+							<div class="col-md-10">
+								<input type="text" class="form-control" placeholder="Donner le nom de la Poste...">
+								{{ form_row(form.nom_poste) }}
+								
+					
+								
+							</div>
+						</div>
+
+					
+					
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">Numero telephone
+							</label>
+							<div class="col-md-10">
+								<input class="form-control" type="tel" name="tel"  maxlength="8" placeholder="Donner le numero du telephone  de la Poste...">
+							
+								{{ form_row(form.numero_telephone) }}
+							
+							</div>
+						</div>
+
+
+
+
+						
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">Etat</label>
+							<div class="col-md-10">
+								<input class="form-control" type="integer" name="number"  maxlength="2" placeholder="Donner l'état de la Poste...">
+								{{ form_row(form.Etat) }}
+									</div>
+						</div>
+
+
+
+
+                        <div class="form-group row">
+							<label class="col-form-label col-md-2">Code postal</label>
+							<div class="col-md-10">
+								<input type="integer" class="form-control" maxlength="4" placeholder="Donner le code postale de la Poste...">
+								{{ form_row(form.code_postal) }}
+									</div>
+									
+						</div>
+
+						
+		
+
+
+
+					
+
+						
+
+						</fieldset>
+			
+				
+					<div class="text-right">
+						<button  type="submit"  SubmitType=class class="btn btn-primary">Submit <i class="icon-paperplane ml-2"></i></button>
+					</div>
+					
+					{{ form_end(form) }}
+					
+				</form>
+			</div>
+		</div>
+		<!-- /form inputs -->
+		
+
+
+
+
+		
+
+
+	</div>
+	<!-- /content area -->
+
+
+
+</div>
+<!-- /main content -->
+
+
+
+
+
+  
+
+
+
+{% endblock %}

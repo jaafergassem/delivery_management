@@ -1,0 +1,16 @@
+{% extends 'home.html.twig' %}
+{% block title %} liste des postes {% endblock %}
+
+{% block body %}
+
+ajouter/modifier Agent Poste 
+
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    
+    <input type="reset" value="supprimé">
+
+{{ form_end(form) }}
+
+{% endblock %}
