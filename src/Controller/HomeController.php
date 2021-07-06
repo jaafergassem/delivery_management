@@ -3,11 +3,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-
-class IndexController extends AbstractController
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+class HomeController extends AbstractController
 {
     /**
      * @Route("/home", name="homepage")
+     * @IsGranted("ROLE_USER")
      */
     public function index(): Response
     {
@@ -15,4 +16,7 @@ class IndexController extends AbstractController
 
         return $this->render('home.html.twig');
     }
+
 }
+
+  

@@ -33,10 +33,7 @@ class Historique
      */
     private $statut;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Transporteur::class, inversedBy="historiques")
-     */
-    private $transporteur;
+  
 
     /**
      * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="historiques")
@@ -106,17 +103,7 @@ class Historique
         return $this;
     }
 
-    public function getTransporteur(): ?Transporteur
-    {
-        return $this->transporteur;
-    }
-
-    public function setTransporteur(?Transporteur $transporteur): self
-    {
-        $this->transporteur = $transporteur;
-
-        return $this;
-    }
+    
 
     public function getSituation(): ?Poste
     {

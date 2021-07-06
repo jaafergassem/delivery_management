@@ -10,12 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\LivreurType;
+use App\Form\AffecterType;
 use App\Entity\Livreur;
 use App\Services\LivreurService;
-
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 /**
  * Backend: Livreur controller.
  * @Route("/livreur", name="backend_livreur")
+ *  @IsGranted("ROLE_ADMIN")
 */
 class LivreurController extends AbstractController
 {
@@ -27,10 +29,10 @@ class LivreurController extends AbstractController
     }
 
 
-    /**
+     /**
      * @Route("/add", name="_add")
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request,UserPasswordEncoderInterface $encodert)
     {
 
         $Livreur = new Livreur();
@@ -39,6 +41,11 @@ class LivreurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $newEncodedPassword = $encodert->encodePassword($Livreur, $Livreur->getPassword());
+            $Livreur->setPassword($newEncodedPassword);
+            $roles[]='ROLE_LIVREUR';
+            $Livreur->setRoles($roles);
+
              $Livreur = $this->LivreurService->persist($Livreur);
 
              $request->getSession()->getFlashBag()->add('success', 'ajout avec succée !');
@@ -48,24 +55,23 @@ class LivreurController extends AbstractController
         return $this->render('Livreur/form.html.twig', array('form' => $form->createView()));
     }
 
-
     /**
-     * @Route("/edit/{id}", name="_edit")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/edit/{livreur}", name="_edit")
+    
      */
-    public function editAction(Request $request, Livreur $Livreur)
+    public function editAction(Request $request, Livreur $livreur)
     {
 
-        $form = $this->createForm(LivreurType::class, $Livreur);
+        $form = $this->createForm(LivreurType::class, $livreur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             $Livreur = $this->LivreurService->persist($Livreur);
+             $livreur = $this->LivreurService->persist($livreur);
              $request->getSession()->getFlashBag()->add('success', 'modification avec succée !');
              return $this->redirectToRoute('backend_livreur_liste');
         }
 
-        return $this->render('Livreur/form.html.twig', array('form' => $form->createView(),'ligne' => $Poste));
+        return $this->render('Livreur/form.html.twig', array('form' => $form->createView(),'ligne' => $livreur));
     }
 
 
@@ -78,9 +84,74 @@ class LivreurController extends AbstractController
         return $this->render('Livreur/liste.html.twig', ['liste' => $liste]);
     }
 
+ 
+
+
+
+
+
+
+    
+    
+
+
+
+
+ /**
+     * @Route("/affecter", name="_affecter")
+     */
+    public function affecter(Request $request)
+    {
+
+        $Livreur = new Livreur();
+        $form = $this->createForm(AffecterType::class, $Livreur);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+           
+            $this->form->bind($request->getParameter('matriculeCamion'));
+
+            $this->form->bind($request->getParameter('nom'));
+          
+            
+            $request->getSession()->getFlashBag()->add('success', 'ajout avec succée !');
+            // return $this->redirectToRoute('backend_livreur_affectationliste');
+        }
+
+        return $this->render('livreur/affecter.html.twig', array('form' => $form->createView()));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @Route("/delete/{id}", name="_delete")
-     * @IsGranted("ROLE_ADMIN")
+     
      */
     public function deleteAction(Livreur $Livreur, Request $request)
     {

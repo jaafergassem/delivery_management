@@ -1,17 +1,109 @@
+
+
+
 {% extends 'home.html.twig' %}
-{% block title %} liste des postes {% endblock %}
+{% block title %} liste des camions {% endblock %}
 
 {% block body %}
 
-hello liste des postes
-<table border='1'>
-{% for ligne in liste %}
-    <tr>
-    <td>{{ligne.matriculeCamion}}</td>
-    <td>{{ligne.intitule}}</td>
-    </tr>
-{% endfor %}
+
+
+
+
+
+
+		<div class="content">
+	<div class="card">
+
+<div class="content">
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Liste des véhicules</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									<div class="header-elements d-flex align-items-center">
+		                              	<a  href="{{ path('backend_camion_add')}}"  class="btn btn-secondary"><i class="icon-diff-added">  AJOUTER</i></a>
+									</div>
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="{{ path('backend_camion_liste')}}" class="breadcrumb-item">véhicule</a>
+											<span class="breadcrumb-item active">Liste</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+</div>
+
+		   <div class="card">
+		
+        	<div class="card-body">
+				
+
+
+
+
+		<div class="datatable-scroll">
+			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+   <thead>
+	<tr role="row">
+		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+          Matricule Véhicule 		</th>
+		  	<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+         Marque	Véhicule	</th>
+		
+	   <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Actions
+		</th>
+	</tr>
+    </thead>
+
+
+
+
+
+
+<tbody>{% for ligne in liste %}
+<tr role="row" class="even">
+		<td class="sorting_1">{{ligne.matriculeCamion}}</td>
+		<td><a href="#"></a>{{ligne.intitule}}</td>
+		
+		   
+		<td class="text-center">
+		<a  class="btn btn-outline-primary" href="{{ path('backend_camion_edit', { 'id': ligne.id }) }}">	<i class="icon-compose"><b>Modifier</b></i></a>
+		<a class="btn btn-outline-danger"  href="{{ path('backend_camion_delete', { 'id': ligne.id }) }}"><i class="icon-trash-alt"></i><b>Supprimer</b></a>
+		</td>
+	
+	</tr>{% endfor %}
+    </tbody>
 
 </table>
+
+</div>
+</div>
+</div>
 
 {% endblock %}

@@ -29,14 +29,14 @@ class Camion
      */
     private $intitule;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Transporteur::class, mappedBy="camion")
-     */
-    private $transporteurs;
+    
+
+    
 
     public function __construct()
     {
         $this->transporteurs = new ArrayCollection();
+        $this->livreurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,30 +68,32 @@ class Camion
         return $this;
     }
 
+   
+
     /**
-     * @return Collection|Transporteur[]
+     * @return Collection|Livreur[]
      */
-    public function getTransporteurs(): Collection
+    public function getLivreurs(): Collection
     {
-        return $this->transporteurs;
+        return $this->livreurs;
     }
 
-    public function addTransporteur(Transporteur $transporteur): self
+    public function addLivreur(Livreur $livreur): self
     {
-        if (!$this->transporteurs->contains($transporteur)) {
-            $this->transporteurs[] = $transporteur;
-            $transporteur->setCamion($this);
+        if (!$this->livreurs->contains($livreur)) {
+            $this->livreurs[] = $livreur;
+            $livreur->setCamion($this);
         }
 
         return $this;
     }
 
-    public function removeTransporteur(Transporteur $transporteur): self
+    public function removeLivreur(Livreur $livreur): self
     {
-        if ($this->transporteurs->removeElement($transporteur)) {
+        if ($this->livreurs->removeElement($livreur)) {
             // set the owning side to null (unless already changed)
-            if ($transporteur->getCamion() === $this) {
-                $transporteur->setCamion(null);
+            if ($livreur->getCamion() === $this) {
+                $livreur->setCamion(null);
             }
         }
 

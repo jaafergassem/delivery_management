@@ -1,0 +1,190 @@
+
+
+
+
+{% extends 'home.html.twig' %}
+{% block title %}  verif {% endblock %}
+
+{% block body %}
+
+
+<!-- Main content -->
+ <div class="content-wrapper">
+
+
+ 
+
+
+
+	<!-- Content area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Rechercher un Colis</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									<div class="header-elements d-flex align-items-center">
+		                              
+									</div>
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="" class="breadcrumb-item">Rechercher</a>
+											<span class="breadcrumb-item active">Add</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		<div class="card">
+        	<div class="card-body">
+				
+
+				
+				<form  method="post"  >
+					<fieldset class="mb-3">
+						<legend class="text-uppercase font-size-sm font-weight-bold">Rechercher un Colis</legend>
+
+					
+					
+					
+					
+						<div class="form-group row" >
+							<label class="col-form-label col-md-2">  <strong>Code Barre    </strong> 
+							
+                          <i class="icon-search4"></i> 
+
+                           
+		                  </label>
+							<div class="col-md-10" >
+							
+                             <input type="text" name="code"  required="required" maxlength="10" class="form-control" placeholder="Donner le code barre de colis...">
+
+
+                                <button type="submit"  class="btn btn-outline-primary"  value="valide">  Valider et Ajouter un autre Colis</button>
+                                 	<a  class="btn btn-outline-secondary" href="{{ path('homepage') }}">Accueil</a>
+						 	</div>
+						</div>
+
+
+
+        
+                       
+            </form>
+
+	                    
+
+
+
+
+					
+
+						
+
+						</fieldset>
+                        	 
+                             
+  
+			
+				
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- /form inputs -->
+		
+
+
+
+		
+
+
+	</div>
+	<!-- /content area -->
+
+
+
+</div>
+<!-- /main content -->
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

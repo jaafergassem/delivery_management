@@ -1,0 +1,210 @@
+
+{% extends 'home.html.twig' %}
+{% block title %}    {% endblock %}
+
+{% block body %}
+
+
+
+
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+	
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+ 
+ 
+	
+	
+	
+	<!-- Content area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Regrouper un Bordereau</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+								
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="{{ path('backend_bordereau_add')}}" class="breadcrumb-item">Bordereau</a>
+											<span class="breadcrumb-item active">Add</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		
+		<div class="card">
+        	<div class="card-body">
+				
+
+				
+				<form action="#">
+					<fieldset class="mb-3">
+						<legend class="text-uppercase font-size-sm font-weight-bold">Regrouper les colis</legend>
+					
+
+					                   
+					
+                          <div class="form-group row">
+							<label class="col-form-label col-md-2"> liste de colis</label>
+							<div class="col-md-10">
+										   <select name="paquets" multiple class=form-control>	
+                                                    {% for paquets in paquets %}
+															
+															<option value="id"><B>Poste arrivé:----------->{{paquets.posteArrive.localisation}}-----|----Date départ:-----------> {{paquets.dateCreation| date('d-m-Y') }}</B></option>
+																
+														{% endfor %}
+							          </select>
+									</div>
+									
+						 </div>
+
+
+						   <div class="form-group row">
+							<label class="col-form-label col-md-2"> poste d'arrivée </label>
+							<div class="col-md-10">
+							
+									</div>
+									
+						     </div>
+
+
+
+
+              	   <div class="form-group row">
+						
+							<div class="col-md-10">
+								{{ form_widget(form.livreur, {'attr': {'class':'form-control','type':'text','maxlength':'8','placeholder': 'Donner livreur du Bordereau...'}}) }}
+							
+									</div>
+									
+						    </div>   
+							
+						
+              	   <div class="form-group row">
+						
+							<div class="col-md-10">
+								{{ form_widget(form.camion, {'attr': {'class':'form-control','type':'text','maxlength':'8','placeholder': 'Donner vehicule du livreur...'}}) }}
+							
+									</div>
+									
+						    </div>   
+							
+
+
+
+
+						
+
+						   
+                          
+
+		
+
+
+
+					
+
+						
+
+						</fieldset>
+			
+				
+					<div class="text-right">
+						<button  type="submit"  SubmitType=class class="btn btn-primary">submit  <i class="icon-paperplane ml-2"></i></button>
+					</div>
+					
+					{{ form_end(form) }}
+					
+				</form>
+			</div>
+		</div>
+		<!-- /form inputs -->
+		
+
+
+
+
+		
+
+
+	</div>
+	<!-- /content area -->
+
+
+
+</div>
+<!-- /main content -->
+
+
+
+
+{% endblock %}
+  

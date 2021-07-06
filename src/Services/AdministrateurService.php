@@ -55,7 +55,7 @@ class AdministrateurService
      */
     protected function getRepository(): EntityRepository
     {
-        return $this->entityManager->getRepository(Poste::class);
+        return $this->entityManager->getRepository(Administrateur::class);
     }
 
     /**

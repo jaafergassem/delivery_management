@@ -78,7 +78,7 @@ class LivreurService
      */
     public function remove(Livreur $livreur): bool
     {
-        $this->entityManager->remove($poste);
+        $this->entityManager->remove($livreur);
         $this->entityManager->flush();
 
         return true;

@@ -16,6 +16,7 @@ use App\Services\PosteService;
 /**
  * Backend: Poste controller.
  * @Route("/poste", name="backend_poste")
+ *  @IsGranted("ROLE_ADMIN")
 */
 class PosteController extends AbstractController
 {
@@ -51,7 +52,6 @@ class PosteController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="_edit")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function editAction(Request $request, Poste $Poste)
     {
@@ -82,7 +82,7 @@ class PosteController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="_delete")
-     * @IsGranted("ROLE_ADMIN")
+     
      */
     public function deleteAction(Poste $Poste, Request $request)
     {

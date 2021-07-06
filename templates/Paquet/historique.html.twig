@@ -1,0 +1,112 @@
+{% extends 'home.html.twig' %}
+{% block title %} 
+ {% endblock %}
+
+
+ {% block head %}
+
+
+ {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+	<div class="content">
+	<div class="card">
+
+<div class="content">
+
+        
+
+
+
+
+		<div class="datatable-scroll">
+			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+   <thead>
+	<tr role="row">
+		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+           CodeBarre		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
+        Statut		</th>
+
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Type
+		</th>
+	
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			DateCreation
+		</th>
+		
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
+            PosteDepart		</th>
+	
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			posteDarrive
+		</th>
+	
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Agent
+		</th>
+		
+			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Actions
+		</th>
+		
+		
+
+	</tr>
+    </thead>
+<tbody>
+
+
+
+{% for ligne in liste %}
+<tr role="row" class="even">
+
+      <td><span>{{ligne.codeBarre()}}</span></td>
+	  	<td>{{ligne.statut}}</td>
+	 
+		<td><a href="#">{{ligne.type}}</a></td>
+		<td>{{ligne.dateCreation | date('d-m-Y')}}</span></td>
+		
+	
+		                                    	
+     	<td><a href="#">{{ligne.posteDepart.nomPoste}}</a></td>
+		 <td><a href="#">{{ligne.posteArrive.nomPoste}}</a></td>
+		
+
+		  <td><a href="#">{{ligne.agent.nom}}</a></td>
+
+			</span></td>
+        
+
+
+		<td class="text-center">
+					<a  class="btn btn-outline-primary" href="{{ path('backend_paquet_edit', { 'id': ligne.id }) }}">	<i class="icon-compose"><b>Modifier</b></i></a>
+		<a class="btn btn-outline-danger"  href="{{ path('backend_paquet_delete', { 'id': ligne.id }) }}"><i class="icon-trash-alt"></i><b>Supprimer</b></a>
+
+		</td>
+	</div>
+	</tr>{% endfor %}
+    </tbody>	
+     </table>
+
+
+	
+{% endblock%}
+
+
+	
+	
+		
+	
+	
+	

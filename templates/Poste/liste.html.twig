@@ -16,9 +16,56 @@
 
 
 
+		<div class="content">
+	<div class="card">
+
+<div class="content">
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Liste des Postes</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									<div class="header-elements d-flex align-items-center">
+		                              	<a  href="{{ path('backend_poste_add')}}"  class="btn btn-secondary"><i class="icon-diff-added">  AJOUTER</i></a>
+									</div>
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="{{ path('backend_poste_liste')}}" class="breadcrumb-item">Poste</a>
+											<span class="breadcrumb-item active">Liste</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
 
+</div>
+
+		   <div class="card">
+		
+        	<div class="card-body">
+				
 
 		<div class="datatable-scroll">
 			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
@@ -48,16 +95,22 @@
 		<td>{{ligne.numeroTelephone}}</td>
 		<td>{{ligne.Etat}}</td>
 		<td><span class="badge badge-info">{{ligne.codePostal}}</span></td>
-		   
+	
 		<td class="text-center">
-		<button type="button" class="btn btn-outline-primary">Modifier</button>
-		<button type="button" class="btn btn-outline-danger">Supprimer</button>
+		<a  class="btn btn-outline-primary" href="{{ path('backend_poste_edit', { 'id': ligne.id }) }}"> <i class="icon-compose"><b>Modifier</b></i></a>
+		<a class="btn btn-outline-danger"  href="{{ path('backend_poste_delete', { 'id': ligne.id }) }}">  <i class="icon-trash-alt"></i><b>Supprimer</b></a>
 		</td>
 	</div>
 	</tr>{% endfor %}
-    </tbody>	
+    </tbody>
      </table>
 
+
+
+</div>
+</div></div>
+  
+  
 
 
 

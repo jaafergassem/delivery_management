@@ -1,0 +1,223 @@
+
+
+{% extends 'home.html.twig' %}
+{% block title %} Ajouter de colis   {% endblock %}
+
+{% block body %}
+
+
+
+
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+	
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+ 
+ 
+	
+	
+	
+	<!-- Content area -->
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Créer un Colis</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									<div class="header-elements d-flex align-items-center">
+		                              	<button type="submit" class="btn btn-secondary"><i class="icon-diff-added">  VALIDER</i></button>
+									</div>
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="" class="breadcrumb-item">Colis</a>
+											<span class="breadcrumb-item active">Add</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		
+		<div class="card">
+        	<div class="card-body">
+				
+
+				
+				<form action="#">
+					<fieldset class="mb-3">
+						<legend class="text-uppercase font-size-sm font-weight-bold">Formulaire</legend>
+					
+
+					       
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">
+								Code Barre </label>
+							<div class="col-md-10">
+							
+                             	<div  class="form-control">
+              
+                                 	{{code}}
+							    </div>
+						     </div>
+                     </div>
+
+                       
+					        
+					
+
+					  
+
+					
+					 <input type="hidden" name="code"  required="required" value="{{ code}}">
+						
+						<div class="form-group row">
+							<label class="col-form-label col-md-2"> {{ form_label(form.designation) }}</label>
+							<div class="col-md-10">
+								{{ form_widget(form.designation, {'attr': {'class': 'form-control','placeholder': 'designation'}}) }}
+							
+							
+							
+							</div>
+						</div>
+
+
+
+
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">
+								 {{ form_label(form.type) }}</label>
+							<div class="col-md-10">
+								{{ form_widget(form.type, {'attr': {'class': 'form-control','placeholder': 'type de colis'}}) }}
+								
+					
+								
+							</div>
+						</div>
+                         
+
+						<div class="form-group row">
+							<label class="col-form-label col-md-2">
+								 {{ form_label(form.posteArrive) }}</label>
+							<div class="col-md-10">
+								{{ form_widget(form.posteArrive, {'attr': {'class': 'form-control','placeholder': 'poste arrivée'}}) }}
+								
+					
+								
+							</div>
+						</div>
+
+
+
+
+
+
+
+					
+						
+
+					</fieldset>
+			
+				
+					<div class="text-right">
+						<button  type="submit"  SubmitType=class  class="btn btn-primary">Submit <i class="icon-paperplane ml-2"></i></button>
+					</div>
+					
+					{{ form_end(form) }}
+					
+				</form>
+			</div>
+		</div>
+		<!-- /form inputs -->
+		
+
+
+
+
+		
+
+
+	</div>
+	<!-- /content area -->
+
+
+
+</div>
+<!-- /main content -->
+
+
+
+
+{% endblock %}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

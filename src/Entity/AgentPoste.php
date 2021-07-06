@@ -10,14 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=AgentPosteRepository::class)
  */
-class AgentPoste
+class AgentPoste extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+ 
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -39,6 +34,13 @@ class AgentPoste
      */
     private $paquets;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="agentPostes")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $poste;
+
+
     public function __construct()
     {
         $this->historiques = new ArrayCollection();
@@ -46,11 +48,7 @@ class AgentPoste
         $this->paquets = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
+   
     public function getPosteOccupe(): ?string
     {
         return $this->posteOccupe;
@@ -152,4 +150,17 @@ class AgentPoste
 
         return $this;
     }
+
+    public function getPoste(): ?Poste
+    {
+        return $this->poste;
+    }
+
+    public function setPoste(?Poste $poste): self
+    {
+        $this->poste = $poste;
+
+        return $this;
+    }
+
 }

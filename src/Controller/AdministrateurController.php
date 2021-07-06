@@ -12,10 +12,12 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\AdministrateurType;
 use App\Entity\Administrateur;
 use App\Services\AdministrateurService;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Backend: Administrateur controller.
  * @Route("/Administrateur", name="backend_administrateur")
+ * @IsGranted("ROLE_ADMIN")
 */
 class AdministrateurController extends AbstractController
 {
@@ -30,7 +32,7 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/add", name="_add")
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request,UserPasswordEncoderInterface $encodert)
     {
 
         $Administrateur = new Administrateur();
@@ -39,6 +41,11 @@ class AdministrateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $newEncodedPassword = $encodert->encodePassword($Administrateur, $Administrateur->getPassword());
+            $Administrateur->setPassword($newEncodedPassword);
+            $roles[]='ROLE_ADMIN';
+            $Administrateur->setRoles($roles);
+
              $Administrateur = $this->AdministrateurService->persist($Administrateur);
 
              $request->getSession()->getFlashBag()->add('success', 'ajout avec succée !');
@@ -50,22 +57,22 @@ class AdministrateurController extends AbstractController
 
 
     /**
-     * @Route("/edit/{id}", name="_edit")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/edit/{administrateur}", name="_edit")
+     
      */
-    public function editAction(Request $request, Administrateur $Administrateur)
+    public function editAction(Request $request, Administrateur $administrateur)
     {
 
-        $form = $this->createForm(AdministrateurType::class, $Administrateur);
+        $form = $this->createForm(AdministrateurType::class, $administrateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             $Administrateur = $this->AdministrateurService->persist($Administrateur);
+             $administrateur = $this->AdministrateurService->persist($administrateur);
              $request->getSession()->getFlashBag()->add('success', 'modification avec succée !');
              return $this->redirectToRoute('backend_administrateur_liste');
         }
 
-        return $this->render('Administrateur/form.html.twig', array('form' => $form->createView(),'ligne' => $Administrateur));
+        return $this->render('Administrateur/form.html.twig', array('form' => $form->createView(),'ligne' => $administrateur));
     }
 
 
@@ -80,7 +87,7 @@ class AdministrateurController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="_delete")
-     * @IsGranted("ROLE_ADMIN")
+    
      */
     public function deleteAction(Administrateur $Administrateur, Request $request)
     {

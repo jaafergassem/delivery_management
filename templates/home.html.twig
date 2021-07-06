@@ -36,6 +36,7 @@
 <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
 <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+	<script src="{{ asset('global_assets/js/demo_pages/form_multiselect.js') }}"></script>
 <!-- /theme JS files -->
 
 
@@ -50,9 +51,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
-			<a href="{{ asset('index.html') }}" class="d-inline-block">
-				<img src="{{ asset('camion.png') }}" alt="" height="80" width="50">
-			</a>
+		
 		</div>
 
 		<div class="d-md-none">
@@ -72,34 +71,7 @@
 					</a>
 				</li>
 
-				<li class="nav-item dropdown">
-					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-						<i class="icon-git-compare"></i>
-						<span class="d-md-none ml-2">Git updates</span>
-						<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-content wmin-md-350">
-						<div class="dropdown-content-header">
-							<span class="font-weight-semibold">Git updates</span>
-							<a href="#" class="text-default"><i class="icon-sync"></i></a>
-						</div>
-
-						<div class="dropdown-content-body dropdown-scrollable">
-							<ul class="media-list">
-								
-							</ul>
-						</div>
-
-						<div class="dropdown-content-footer bg-light">
-							<a href="#" class="text-grey mr-auto">All updates</a>
-							<div>
-								<a href="#" class="text-grey" data-popup="tooltip" title="Mark all as read"><i class="icon-radio-unchecked"></i></a>
-								<a href="#" class="text-grey ml-2" data-popup="tooltip" title="Bug tracker"><i class="icon-bug2"></i></a>
-							</div>
-						</div>
-					</div>
-				</li>
+			
 			</ul>
 
 			<span class="navbar-text ml-md-3 mr-md-auto">
@@ -112,6 +84,7 @@
 						<i class="icon-people"></i>
 						<span class="d-md-none ml-2">Users</span>
 					</a>
+				
 					
 					<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-300">
 						<div class="dropdown-content-header">
@@ -127,7 +100,7 @@
 										<img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36" height="36" class="rounded-circle" alt="">
 									</div>
 									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Jaafer</a>
+										<a href="#" class="media-title font-weight-semibold">{% if app.user is not null %} {{app.user.nom }} {{ app.user.prenom }} {% endif %}</a>
 										<span class="d-block text-muted font-size-sm">Administrateur</span>
 									</div>
 									<div class="ml-3 align-self-center"><span class="badge badge-mark border-warning-300"></span></div>
@@ -152,6 +125,19 @@
 						</div>
 					</div>
 				</li>
+					
+				<li class="nav-item dropdown">
+					
+						
+						
+						
+					
+					
+					<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+						<div class="dropdown-content-header">
+							<span class="font-weight-semibold">Messages</span>
+							<a href="#" class="text-default"><i class="icon-compose"></i></a>
+						</div>
 
                 <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
                     <div class="dropdown-content-header">
@@ -255,8 +241,8 @@
 
 				<li class="nav-item dropdown dropdown-user">
 					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-						<img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
-						<span>Jaafer</span>
+						
+						<span>{% if app.user is not null %}{{app.user.nom }} {{ app.user.prenom }} {% endif %}</span>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
@@ -265,7 +251,7 @@
 					
 				
 						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Parametre</a>
-						<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Deconnexion</a>
+						<a   href="{{ path('app_logout')}}"  class="dropdown-item"><i class="icon-switch2"></i> Deconnexion</a>
 					</div>
 				</li>
 			</ul>
@@ -311,43 +297,128 @@
 							<a href="{{ asset('/home')}}" class="nav-link">
 								<i class="icon-home2"></i>
 								<span>
-									Accueil
+									Dhashboard
 								</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu">
+
+                        {% if is_granted('ROLE_ADMIN') %}
+
+                        <li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-library2"></i> <span>Les postes</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="poste">
-								<li class="nav-item"><a href="{{ asset('poste/add')}}" class="nav-link active">Ajouter des postes</a></li>
-								<li class="nav-item"><a href="{{ asset('poste/liste')}}" class="nav-link">Afficher les postes</a></li>
+								<li class="nav-item"><a href="{{ path('backend_poste_add')}}"  class="nav-link ">Ajouter des postes</a></li>
+								<li class="nav-item"><a href="{{ path('backend_poste_liste')}}"  class="nav-link">Liste des postes</a></li>
 							
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-truck"></i> <span>Les livreurs</span></a>
+                        	
+					  <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-user"></i> <span>Les Administrateur</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="livreur">
-								<li class="nav-item"><a href="{{ asset('livreur/add')}}" class="nav-link active">Ajouter livreur</a></li>
-								<li class="nav-item"><a href="{{ asset('livreur/liste')}}" class="nav-link">Afficher livreur</a></li>
+								<li class="nav-item"><a href="{{ path('backend_administrateur_add')}}" class="nav-link ">Ajouter un administrateur</a></li>
+								<li class="nav-item"><a href="{{ path('backend_administrateur_liste')}}" class="nav-link">Liste des administrateurs</a></li>
+							
+							
 								
 							</ul>
 							
 						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link"><i class="icon-list-unordered"></i> <span>les  bordereaux</span></a>
-                            
-									</li>
-						<li class="nav-item">
-							<a href="colis.html" class="nav-link">
-								<i class="icon-envelop3"></i>
-								<span>Liste des Colis</span>
+
+
+
+
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-users2"></i> <span>Les livreurs</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="livreur">
+								<li class="nav-item"><a href="{{ path('backend_livreur_add')}}" class="nav-link ">Ajouter des Livreurs</a></li>
+								<li class="nav-item"><a href="{{ path('backend_livreur_liste')}}" class="nav-link">Liste des livreurs</a></li>
 							
-							</a>
+							
+								
+							</ul>
+							
 						</li>
-						<li class="nav-item"><a href="RTL/default/full/index.html" class="nav-link"><i class="icon-reset
-							"></i> 
-                                   <span>Historique</span></a></li>
-                                   <img src="{{ asset('livraison.png') }}" >
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-user-tie"></i> <span>Les Agents postes</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="agent">
+								<li class="nav-item"><a href="{{ path('backend_agentPoste_add')}}" class="nav-link ">Ajouter des Agents</a></li>
+								<li class="nav-item"><a href="{{ path('backend_agentPoste_liste')}}" class="nav-link">Liste des Agents</a></li>
+							
+							
+								
+							</ul>
+							
+						</li>
+
+
+		              <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-truck"></i> <span>Les Véhicules</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="camion">
+							
+									<li class="nav-item"><a href="{{ path('backend_camion_add')}}" class="nav-link ">Ajouter des véhicules</a></li>
+							
+								<li class="nav-item"><a href="{{ path('backend_camion_liste')}}" class="nav-link ">Liste des véhicules</a></li>
+								
+							</ul>
+							
+						</li>     
+							
+									<li class="nav-item"><a href="{{ path('backend_livreur_affecter')}}" class="nav-link "><i class="icon-user-plus"></i> <span>Affecter livreur au camion </span></a></li>
+
+						{% endif %} 
+						
+                        {% if is_granted('ROLE_AGENT') %}
+
+                        
+                     <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-envelop3"></i> <span>les  Colis</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="colis">
+							
+									<li class="nav-item"><a href="{{ path('backend_paquet_verif')}}"   class="nav-link ">Créer un Colis</a></li>
+							
+								<li class="nav-item"><a href="{{ path('backend_paquet_liste')}}" class="nav-link ">Liste  des  Colis</a></li>
+								
+							</ul>
+							
+						</li>
+
+                    
+						
+
+					  <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-file-text2"></i> <span>les  bordereaux</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Bordereau">
+									
+									<li class="nav-item"><a href="{{ path('backend_bordereau_add')}}" class="nav-link ">Regrouper un  bordereau</a></li>
+							
+								<li class="nav-item"><a href="{{ path('backend_bordereau_liste')}}"class="nav-link ">liste des bordereau</a></li>
+								
+							</ul>
+							
+						</li>
+                                                    
+{% endif %} 
+
+
+
+						
+
+                        {% if is_granted('ROLE_LIVREUR') %}
+
+<li class="nav-item"><a href="{{ path('backend_action_select')}}" class="nav-link "> <i class="icon-select2"></i><span>Choisir les Bordereau à livrer</span></a></li>
+							
+								<li class="nav-item"><a href="{{ path('backend_action_valider')}}"class="nav-link"> <i class="icon-checkmark-circle2"></i><span>Valider l'envoie du Boredereaux</span></a></li>
+				
+	{% endif %} 
+
+		          
+	
+					
+
+
+                                  
 						<!-- /main -->
                     </ul>
 				</div>
@@ -362,11 +433,192 @@
 
 
 
+		
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+{# 
+
+
+ <div class="content" >
+         <div class="card">
+        	<div class="card-body" >
+				
+
+
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Affecter le livreur à son véhicule</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+										
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+<!-- Select2 selects -->
+				<div class="mb-3">
+					
+					<span class="text-muted d-block"></span>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header header-elements-inline">
+								<h5 class="card-title">Liste des livreurs</h5>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				                		<a class="list-icons-item" data-action="reload"></a>
+				                		<a class="list-icons-item" data-action="remove"></a>
+				                	</div>
+			                	</div>
+							</div>
+
+							<div class="card-body">
+					
+
+							
+							
+							
+
+						
+								<div class="form-group">
+									
+													<select name="cars" id="cars" class="browser-default custom-select" >
+													<option selected>Selectionner un livreur</option>
+														<option value="volvo">Volvo</option>
+														<option value="saab">Saab</option>
+														<option value="mercedes">Mercedes</option>
+														<option value="audi">Audi</option>
+														</select>
+													</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header header-elements-inline">
+								<h5 class="card-title">Liste des véhicules</h5>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				                		<a class="list-icons-item" data-action="reload"></a>
+				                		<a class="list-icons-item" data-action="remove"></a>
+				                	</div>
+			                	</div>
+							</div>
+
+							<div class="card-body">
+								<div class="form-group">
+									
+									<select name="cars" id="cars" class="browser-default custom-select" >
+													<option selected>Selectionner un véhicule :</option>
+														<option value="volvo">Volvo</option>
+														<option value="saab">Saab</option>
+														<option value="mercedes">Mercedes</option>
+														<option value="audi">Audi</option>
+														</select>
+								</div>
+
+								
+
+								
+							</div>
+							
+						</div>
+						<div class="header-elements d-flex align-items-right">
+		                              	<button type="submit" class="btn btn-light"><i class="icon-arrow-right8">  Affecter</i></button>
+									</div> 
+									<br></br>
+					</div>
+				</div>
+				<!-- /select2 selects -->
+
+
+
+
+
+
+
+
+	</div>
+</div></div> #}
+
+{#
+
+<p style={{
+                fontSize:'60px'
+            }}>👋</p>
+                <p
+                style={{
+                    fontSize:'26px',
+                    fontFamily:'cursive',
+                }}
+                >Bienvenu <i>{localStorage.getItem('nom')}</i>, vous êtes l'administrateur :  </p><br/><br/> 
+            <p style={{
+                fontSize:'20px',
+                marginLeft:'12px',
+                 fontFamily:'monospace'}}>vous pouvez maintenant:</p> 
+                <ul style={{marginLeft:'15px',
+                 fontSize:'20px',
+                 fontFamily:'monospace'
+            }}>
+                <li>Consulter la liste des utilisateurs</li>
+                <li>Ajouter un nouveau utilisateur</li>
+                <li>Modifier les coordonées d'un utilisateur</li>
+                <li>Supprimer un  utilisateur</li>
+                </ul>
+
+#}
+
+   
+
+
+
+								
 
 
 		
@@ -386,9 +638,9 @@
 	</div>
 		<!-- /main sidebar -->
         
+
+
     </div>
 	<!-- /page content -->
-
-
 </body>
 </html>

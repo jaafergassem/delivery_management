@@ -25,7 +25,7 @@ class Paquet
     private $codeBarre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date" , nullable=true))
      */
     private $dateDepart;
 
@@ -35,7 +35,7 @@ class Paquet
     private $statut;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date" , nullable=true))
      */
     private $dateCreation;
 
@@ -62,7 +62,7 @@ class Paquet
     /**
      * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="paquets")
      */
-    private $posteDarrive;
+    private $posteArrive;
 
     /**
      * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="paquets")
@@ -73,6 +73,11 @@ class Paquet
      * @ORM\OneToMany(targetEntity=Historique::class, mappedBy="paquet")
      */
     private $historiques;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $designation;
 
     public function __construct()
     {
@@ -97,14 +102,27 @@ class Paquet
         return $this;
     }
 
-    public function getDateDepart(): ?string
+    public function getDateDepart()
     {
         return $this->dateDepart;
     }
 
-    public function setDateDepart(string $dateDepart): self
+    public function setDateDepart($dateDepart): self
     {
         $this->dateDepart = $dateDepart;
+
+        return $this;
+    }
+
+
+    public function getDateCreation() 
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation( $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
@@ -121,17 +139,7 @@ class Paquet
         return $this;
     }
 
-    public function getDateCreation(): ?string
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(string $dateCreation): self
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
+  
 
     public function getType(): ?string
     {
@@ -149,6 +157,7 @@ class Paquet
      * @return Collection|PaquetBordereau[]
      */
     public function getPaquetBordereaus(): Collection
+    
     {
         return $this->paquetBordereaus;
     }
@@ -199,17 +208,7 @@ class Paquet
         return $this;
     }
 
-    public function getPosteArrive(): ?Poste
-    {
-        return $this->poste_arrive;
-    }
-
-    public function setPosteArrive(?Poste $posteArrive): self
-    {
-        $this->poste_arrive = $posteArrive;
-
-        return $this;
-    }
+   
 
     public function getSituation(): ?Poste
     {
@@ -252,4 +251,34 @@ class Paquet
 
         return $this;
     }
+
+    public function getPosteArrive(): ?Poste
+    {
+        return $this->posteArrive;
+    }
+
+    public function setPosteArrive(?Poste $posteArrive): self
+    {
+        $this->posteArrive = $posteArrive;
+
+        return $this;
+    }
+
+    public function getDesignation(): ?string
+    {
+        return $this->designation;
+    }
+
+    public function setDesignation(string $designation): self
+    {
+        $this->designation = $designation;
+
+        return $this;
+    }
+ 
+
+
+
+
+
 }

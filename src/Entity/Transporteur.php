@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TransporteurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,31 +18,19 @@ class Transporteur
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Livreur::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=Livreur::class, cascade={"persist", "remove"})
      */
     private $Livreur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Bordereau::class, mappedBy="transporeteur")
+     * @ORM\OneToOne(targetEntity=Camion::class, cascade={"persist", "remove"})
      */
-    private $bordereaus;
+    private $Camion;
 
     /**
-     * @ORM\OneToMany(targetEntity=Historique::class, mappedBy="transporteur")
+     * @ORM\Column(type="boolean")
      */
-    private $historiques;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Camion::class, inversedBy="transporteurs")
-     */
-    private $camion;
-
-    public function __construct()
-    {
-        $this->bordereaus = new ArrayCollection();
-        $this->historiques = new ArrayCollection();
-    }
+    private $affectation;
 
     public function getId(): ?int
     {
@@ -63,76 +49,27 @@ class Transporteur
         return $this;
     }
 
-    /**
-     * @return Collection|Bordereau[]
-     */
-    public function getBordereaus(): Collection
-    {
-        return $this->bordereaus;
-    }
-
-    public function addBordereau(Bordereau $bordereau): self
-    {
-        if (!$this->bordereaus->contains($bordereau)) {
-            $this->bordereaus[] = $bordereau;
-            $bordereau->setTransporeteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBordereau(Bordereau $bordereau): self
-    {
-        if ($this->bordereaus->removeElement($bordereau)) {
-            // set the owning side to null (unless already changed)
-            if ($bordereau->getTransporeteur() === $this) {
-                $bordereau->setTransporeteur(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Historique[]
-     */
-    public function getHistoriques(): Collection
-    {
-        return $this->historiques;
-    }
-
-    public function addHistorique(Historique $historique): self
-    {
-        if (!$this->historiques->contains($historique)) {
-            $this->historiques[] = $historique;
-            $historique->setTransporteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHistorique(Historique $historique): self
-    {
-        if ($this->historiques->removeElement($historique)) {
-            // set the owning side to null (unless already changed)
-            if ($historique->getTransporteur() === $this) {
-                $historique->setTransporteur(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCamion(): ?Camion
     {
-        return $this->camion;
+        return $this->Camion;
     }
 
-    public function setCamion(?Camion $camion): self
+    public function setCamion(?Camion $Camion): self
     {
-        $this->camion = $camion;
+        $this->Camion = $Camion;
 
         return $this;
     }
 
+    public function getAffectation(): ?bool
+    {
+        return $this->affectation;
+    }
+
+    public function setAffectation(bool $affectation): self
+    {
+        $this->affectation = $affectation;
+
+        return $this;
+    }
 }

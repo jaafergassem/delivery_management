@@ -16,6 +16,7 @@ use App\Services\CamionService;
 /**
  * Backend: Camion controller.
  * @Route("/camion", name="backend_camion")
+ * @IsGranted("ROLE_ADMIN")
 */
 class CamionController extends AbstractController
 {
@@ -51,7 +52,7 @@ class CamionController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="_edit")
-     * @IsGranted("ROLE_ADMIN")
+     
      */
     public function editAction(Request $request, Camion $Camion)
     {
@@ -65,7 +66,7 @@ class CamionController extends AbstractController
              return $this->redirectToRoute('backend_camion_liste');
         }
 
-        return $this->render('Camion/form.html.twig', array('form' => $form->createView(),'ligne' => $Poste));
+        return $this->render('Camion/form.html.twig', array('form' => $form->createView(),'ligne' => $Camion));
     }
 
 
@@ -80,7 +81,7 @@ class CamionController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="_delete")
-     * @IsGranted("ROLE_ADMIN")
+     
      */
     public function deleteAction(Camion $Camion, Request $request)
     {

@@ -6,6 +6,7 @@ use App\Repository\BordereauRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Date;
 
 /**
  * @ORM\Entity(repositoryClass=BordereauRepository::class)
@@ -20,17 +21,17 @@ class Bordereau
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $numBordereau;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateArrive;
 
@@ -49,10 +50,7 @@ class Bordereau
      */
     private $agent;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Transporteur::class, inversedBy="bordereaus")
-     */
-    private $transporeteur;
+   
 
     /**
      * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="bordereaus")
@@ -63,6 +61,16 @@ class Bordereau
      * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="bordereaus")
      */
     private $PosteArrive;
+     /**
+     * @ORM\ManyToOne(targetEntity=Camion::class, inversedBy="bordereaus")
+     */
+    private $camion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Livreur::class, inversedBy="bordereaus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $livreur;
 
     public function __construct()
     {
@@ -74,36 +82,36 @@ class Bordereau
         return $this->id;
     }
 
-    public function getNumBordereau(): ?int
+    public function getNumBordereau()
     {
         return $this->numBordereau;
     }
 
-    public function setNumBordereau(int $numBordereau): self
+    public function setNumBordereau(string $numBordereau): ?self
     {
         $this->numBordereau = $numBordereau;
 
         return $this;
     }
 
-    public function getDateCreation(): ?string
+    public function getDateCreation()
     {
         return $this->dateCreation;
     }
 
-    public function setDateCreation(string $dateCreation): self
+    public function setDateCreation( $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
 
         return $this;
     }
 
-    public function getDateArrive(): ?string
+    public function getDateArrive()
     {
         return $this->dateArrive;
     }
 
-    public function setDateArrive(string $dateArrive): self
+    public function setDateArrive( $dateArrive): self
     {
         $this->dateArrive = $dateArrive;
 
@@ -164,24 +172,13 @@ class Bordereau
         return $this;
     }
 
-    public function getTransporeteur(): ?Transporteur
-    {
-        return $this->transporeteur;
-    }
-
-    public function setTransporeteur(?Transporteur $transporeteur): self
-    {
-        $this->transporeteur = $transporeteur;
-
-        return $this;
-    }
-
+    
     public function getPosteDepart(): ?Poste
     {
-        return $this->poste_depart;
+        return $this->posteDepart;
     }
 
-    public function setPosteDepart(?Poste $poste_depart): self
+    public function setPosteDepart(?Poste $posteDepart): self
     {
         $this->posteDepart = $posteDepart;
 
@@ -199,4 +196,30 @@ class Bordereau
 
         return $this;
     }
+
+    public function getLivreur(): ?Livreur
+    {
+        return $this->livreur;
+    }
+
+    public function setLivreur(?Livreur $livreur): self
+    {
+        $this->livreur = $livreur;
+
+        return $this;
+    }
+
+
+    public function getCamion(): ?Camion
+    {
+        return $this->camion;
+    }
+
+    public function setCamion(?Camion $camion): self
+    {
+        $this->camion = $camion;
+
+        return $this;
+    }
+
 }

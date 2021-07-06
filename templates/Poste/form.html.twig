@@ -18,8 +18,64 @@
 	
 	
 	<!-- Content area -->
+
+
+
+
+
+
+
+
+
 	<div class="content">
-		
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Ajouter une poste</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									<div class="header-elements d-flex align-items-center">
+		                              	<button type="submit" class="btn btn-secondary"><i class="icon-diff-added">  VALIDER</i></button>
+									</div>
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<a href="{{ path('backend_poste_add')}}" class="breadcrumb-item">Poste</a>
+											<span class="breadcrumb-item active">Add</span>
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		   <div class="card">
 		
         	<div class="card-body">
 				
@@ -37,9 +93,8 @@
 						<div class="form-group row">
 							<label class="col-form-label col-md-2">Localisation</label>
 							<div class="col-md-10">
-								
-								<input type="text" class="form-control"  placeholder="Donner la localisation de Poste...">
-								{{ form_row(form.localisation) }}
+								{{ form_widget(form.localisation, {'attr': {'class': 'form-control','placeholder': 'localisation'}}) }}
+							
 							
 							
 							</div>
@@ -49,10 +104,10 @@
 
 
 						<div class="form-group row">
-							<label class="col-form-label col-md-2">Nom Poste</label>
+							<label class="col-form-label col-md-2">
+								 {{ form_label(form.nom_poste) }}</label>
 							<div class="col-md-10">
-								<input type="text" class="form-control" placeholder="Donner le nom de la Poste...">
-								{{ form_row(form.nom_poste) }}
+								{{ form_widget(form.nom_poste, {'attr': {'class': 'form-control','placeholder': 'nom poste'}}) }}
 								
 					
 								
@@ -65,9 +120,8 @@
 							<label class="col-form-label col-md-2">Numero telephone
 							</label>
 							<div class="col-md-10">
-								<input class="form-control" type="tel" name="tel"  maxlength="8" placeholder="Donner le numero du telephone  de la Poste...">
-							
-								{{ form_row(form.numero_telephone) }}
+								{{ form_widget(form.numero_telephone, {'attr': {'class':'form-control','type':'integer','maxlength':'8','placeholder': 'Donner le numero du telephone  de la Poste...'}}) }}
+								
 							
 							</div>
 						</div>
@@ -79,8 +133,8 @@
 						<div class="form-group row">
 							<label class="col-form-label col-md-2">Etat</label>
 							<div class="col-md-10">
-								<input class="form-control" type="integer" name="number"  maxlength="2" placeholder="Donner l'état de la Poste...">
-								{{ form_row(form.Etat) }}
+								{{ form_widget(form.Etat, {'attr': {'class':'form-control','type':'integer','maxlength':'8','placeholder': 'Donner Etat  de la Poste...'}}) }}
+							
 									</div>
 						</div>
 
@@ -90,8 +144,8 @@
                         <div class="form-group row">
 							<label class="col-form-label col-md-2">Code postal</label>
 							<div class="col-md-10">
-								<input type="integer" class="form-control" maxlength="4" placeholder="Donner le code postale de la Poste...">
-								{{ form_row(form.code_postal) }}
+								{{ form_widget(form.code_postal, {'attr': {'class':'form-control','type':'integer','maxlength':'8','placeholder': 'Donner code postal  de la Poste...'}}) }}
+							
 									</div>
 									
 						</div>

@@ -59,11 +59,17 @@ class Poste
      */
     private $historiques;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AgentPoste::class, mappedBy="poste")
+     */
+    private $agentPostes;
+
     public function __construct()
     {
         $this->bordereaus = new ArrayCollection();
         $this->paquets = new ArrayCollection();
         $this->historiques = new ArrayCollection();
+        $this->agentPostes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,4 +226,35 @@ class Poste
 
         return $this;
     }
+
+    /**
+     * @return Collection|AgentPoste[]
+     */
+    public function getAgentPostes(): Collection
+    {
+        return $this->agentPostes;
+    }
+
+    public function addAgentPoste(AgentPoste $agentPoste): self
+    {
+        if (!$this->agentPostes->contains($agentPoste)) {
+            $this->agentPostes[] = $agentPoste;
+            $agentPoste->setPoste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgentPoste(AgentPoste $agentPoste): self
+    {
+        if ($this->agentPostes->removeElement($agentPoste)) {
+            // set the owning side to null (unless already changed)
+            if ($agentPoste->getPoste() === $this) {
+                $agentPoste->setPoste(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,267 @@
+
+
+{% extends 'home.html.twig' %}
+{% block title %} Affecter livreur   {% endblock %}
+
+{% block body %}
+
+
+
+
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+	
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+ 
+ 
+	
+	
+	
+	<!-- Content area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# 
+
+
+ <div class="content" >
+         <div class="card">
+        	<div class="card-body" >
+				
+
+
+		<div class="mb-3">
+							<div class="page-header page-header-dark" style="border: 1px solid #ddd; border-bottom: 0;">
+								<div class="page-header-content header-elements-inline">
+									<div class="page-title">
+										<h5>
+											<i class="icon-arrow-left52 mr-2"></i>
+											<span class="font-weight-semibold">Affecter le livreur à son véhicule</span> 
+											<small class="d-block opacity-75">    </small>
+										</h5>
+									</div>
+
+									
+								</div>
+
+								<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+									<div class="d-flex">
+										<div class="breadcrumb">
+											<a href="{{ path('homepage')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+										
+										</div>
+
+										
+									</div>
+
+									<div class="header-elements d-none">
+										<div class="breadcrumb justify-content-center">
+										
+										
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+<!-- Select2 selects -->
+				<div class="mb-3">
+					
+					<span class="text-muted d-block"></span>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header header-elements-inline">
+								<h5 class="card-title">Liste des livreurs</h5>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				                		<a class="list-icons-item" data-action="reload"></a>
+				                		<a class="list-icons-item" data-action="remove"></a>
+				                	</div>
+			                	</div>
+							</div>
+
+							<div class="card-body">
+					
+
+							
+							
+							
+
+						
+								<div class="form-group">
+									
+													<select name="cars" id="cars" class="browser-default custom-select" >
+													<option selected>Selectionner un livreur</option>
+														<option value="volvo">Volvo</option>
+														<option value="saab">Saab</option>
+														<option value="mercedes">Mercedes</option>
+														<option value="audi">Audi</option>
+														</select>
+													</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header header-elements-inline">
+								<h5 class="card-title">Liste des véhicules</h5>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				                		<a class="list-icons-item" data-action="reload"></a>
+				                		<a class="list-icons-item" data-action="remove"></a>
+				                	</div>
+			                	</div>
+							</div>
+
+							<div class="card-body">
+								<div class="form-group">
+									
+									<select name="cars" id="cars" class="browser-default custom-select" >
+													<option selected>Selectionner un véhicule :</option>
+														<option value="volvo">Volvo</option>
+														<option value="saab">Saab</option>
+														<option value="mercedes">Mercedes</option>
+														<option value="audi">Audi</option>
+														</select>
+								</div>
+
+								
+
+								
+							</div>
+							
+						</div>
+						<div class="header-elements d-flex align-items-right">
+		                              	<button type="submit" class="btn btn-light"><i class="icon-arrow-right8">  Affecter</i></button>
+									</div> 
+									<br></br>
+					</div>
+				</div>
+				<!-- /select2 selects -->
+
+
+
+
+
+
+
+
+	</div>
+</div></div> #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+		
+		<div class="card">
+        	<div class="card-body">
+				
+
+				
+				<form action="#">
+					<fieldset class="mb-3">
+						<legend class="text-uppercase font-size-sm font-weight-bold">Affecter livreur au véhicule</legend>
+					
+
+					       
+				
+                       
+					        
+					
+
+					  
+
+					
+					
+              	   <div class="form-group row">
+						
+							<div class="col-md-10">
+								{{ form_widget(form.nom, {'attr': {'class':'form-control','type':'text','maxlength':'8','placeholder': 'Donner livreur du Bordereau...'}}) }}
+							
+									</div>
+									
+						    </div>   
+							
+						
+              	   			<div class="form-group row">
+						
+									<div class="col-md-10">
+											{{ form_widget(form.camion, {'attr': {'class':'form-control','type':'text','maxlength':'8','placeholder': 'Donner vehicule du livreur...'}}) }}
+							
+									</div>
+							
+						 </div>   
+	             
+</fieldset>
+			
+				
+					<div class="text-right">
+						<button  type="submit"  SubmitType=class  class="btn btn-primary">Submit <i class="icon-paperplane ml-2"></i></button>
+					</div>
+					
+					{{ form_end(form) }}
+					
+				</form>
+			</div>
+		</div>
+		<!-- /form inputs -->
+		
+
+
+
+
+		
+
+
+	</div>
+	<!-- /content area -->
+
+
+
+</div>
+<!-- /main content -->
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,86 @@
+{% extends 'home.html.twig' %}
+{% block title %} 
+ {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+
+	<div class="content">
+	<div class="card">
+
+<div class="content">
+
+
+
+
+		<div class="datatable-scroll">
+			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+   <thead>
+	<tr role="row">
+		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+          numéro Bordereau 		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
+        dateCreation		</th>
+	
+	
+			<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+          statut 		</th>
+		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
+        posteDepart		</th>
+	
+		<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			posteDarrive
+		</th>
+			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			transporeteur
+		</th>
+			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			agent
+		</th>
+			</th>
+			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
+			Actions
+		</th>
+	</tr>
+    </thead>
+<tbody> {% for ligne in liste %}
+<tr role="row" class="even">
+		<td class="sorting_1">{{ligne.numBordereau}}</td>
+			<td class="sorting_1">{{ligne.dateCreation| date('d-m-Y') }}</td>
+				<td><a href="#">{{ligne.statut}}</a></td>	
+		<td class="sorting_1">{{ligne.posteDepart.nomPoste}} </td>
+		<td><a href="#">{{ligne.posteArrive.nomPoste }}</a></td>
+				<td class="sorting_1">{{ligne.Livreur.nom}}</td> 
+			<td><a href="#">{{ligne.agent.nom }}</a></td>
+		
+		
+			 
+			 
+			
+		
+		
+	
+		<td class="text-center">
+	
+		<a class="btn btn-outline-danger"  href="{{ path('backend_bordereau_delete', { 'id': ligne.id }) }}">Supprimer</a>
+		</td>
+	</div>
+	</tr>{% endfor %}
+    </tbody>	
+     </table>
+
+
+</div>
+</div>
+</div>
+
+	
+{% endblock%}

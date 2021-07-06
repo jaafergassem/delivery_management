@@ -12,10 +12,12 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\AgentPosteType;
 use App\Entity\AgentPoste;
 use App\Services\AgentPosteService;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Backend: AgentPoste controller.
  * @Route("/AgentPoste", name="backend_agentPoste")
+ * @IsGranted("ROLE_ADMIN")
 */
 class AgentPosteController extends AbstractController
 {
@@ -29,8 +31,10 @@ class AgentPosteController extends AbstractController
 
     /**
      * @Route("/add", name="_add")
+    
+
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request,UserPasswordEncoderInterface $encodert)
     {
 
         $AgentPoste = new AgentPoste();
@@ -39,7 +43,12 @@ class AgentPosteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $newEncodedPassword = $encodert->encodePassword($AgentPoste, $AgentPoste->getPassword());
+            $AgentPoste->setPassword($newEncodedPassword);
+            $roles[]='ROLE_AGENT';
+            $AgentPoste->setRoles($roles);
              $AgentPoste = $this->AgentPosteService->persist($AgentPoste);
+             $this->addFlash('message', 'Utilisateur ajouté avec succès');
 
              $request->getSession()->getFlashBag()->add('success', 'ajout avec succée !');
              return $this->redirectToRoute('backend_agentPoste_liste');
@@ -50,22 +59,22 @@ class AgentPosteController extends AbstractController
 
 
     /**
-     * @Route("/edit/{id}", name="_edit")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/edit/{agentPoste}", name="_edit")
+     
      */
-    public function editAction(Request $request, AgentPoste $AgentPoste)
+    public function editAction(Request $request, AgentPoste $agentPoste)
     {
 
-        $form = $this->createForm(AgentPosteType::class, $AgentPoste);
+        $form = $this->createForm(AgentPosteType::class, $agentPoste);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             $AgentPoste = $this->AgentPosteService->persist($AgentPoste);
+             $agentPoste = $this->AgentPosteService->persist($agentPoste);
              $request->getSession()->getFlashBag()->add('success', 'modification avec succée !');
              return $this->redirectToRoute('backend_agentPoste_liste');
         }
 
-        return $this->render('AgentPoste/form.html.twig', array('form' => $form->createView(),'ligne' => $AgentPoste));
+        return $this->render('AgentPoste/form.html.twig', array('form' => $form->createView(),'ligne' => $agentPoste));
     }
 
 
@@ -80,7 +89,7 @@ class AgentPosteController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="_delete")
-     * @IsGranted("ROLE_ADMIN")
+    
      */
     public function deleteAction(AgentPoste $AgentPoste, Request $request)
     {
