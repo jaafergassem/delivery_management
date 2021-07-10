@@ -10,6 +10,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\SelectType;
 use App\Entity\Bordereau;
+use App\Services\BordereauService;
+
+use App\Form\BordereauType;
+
+
+
 
 
 
@@ -22,6 +28,13 @@ use App\Entity\Bordereau;
 
 class ActionController extends AbstractController
 {
+
+
+    
+    public function __construct(BordereauService $BordereauService)
+    {
+        $this->BordereauService = $BordereauService;
+    }
 
 
  /**
@@ -37,11 +50,39 @@ class ActionController extends AbstractController
      /**
      * @Route("/select", name="_select")
      */
-    public function select(Request $request)
+    public function getBordereau()
     {
 
-      
-        return $this->render('action/select.html.twig');
+    
+        $liste = $this->BordereauService->getBordereau();
+        return $this->render('bordereau/select.html.twig', ['liste' => $liste]);
+
+
+
+
+
+
+
+
+
+        
+        $bordereau = new Bordereau();
+        $form = $this->createForm(SelectType::class, $bordereau);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $now= new \DateTime();
+            
+            $bordereau->setDateDepart($now);
+            $bordereau->setStatut('En cours de livraison');
+            $bordereau = $this->BordereauService->persist($bordereau);
+
+            $request->getSession()->getFlashBag()->add('success', 'selectionné avec succée !');
+           
+       }
+       return $this->redirectToRoute('backend_valider');
     }
 
 

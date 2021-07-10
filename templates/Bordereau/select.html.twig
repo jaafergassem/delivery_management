@@ -1,27 +1,10 @@
 
 {% extends 'home.html.twig' %}
-{% block title %} liste des livreurs {% endblock %}
+{% block title %} select bordereaux{% endblock %}
 
 {% block body %}
 	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    	<!-- Main content -->
+	<!-- Main content -->
 		<div class="content-wrapper">
 
 			<!-- Page header -->
@@ -54,27 +37,16 @@
 			<!-- Content area -->
 			<div class="content">
 
-			
-
-
-
-				<!-- Custom Bootstrap inputs -->
+	<!-- Custom Bootstrap inputs -->
             	<div class="card">
-					
-
-                
-        			
-
-
-
+		
 		<div class="datatable-scroll">
 			<table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
    <thead>
 	<tr role="row">
 	<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
-        Select Boredereaux		</th>
-		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
-          numéro Bordereau 		</th>
+       Boredereaux		</th>
+	
 		<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">
         dateCreation		</th>
 	
@@ -102,37 +74,22 @@
 {% for ligne in liste %}
 		<tr role="row" class="even">
 		<td class="sorting_1">
-									
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="custom_checkbox_stacked_checked_disabled">
-										<label class="custom-control-label" for="custom_checkbox_stacked_checked_disabled">Bordereau 3</label>
-									</div>
-
-								
-									
-							
-									
+						Bordereau {{ligne.id}}	
 						</td>
-			<td class="sorting_1">{{ligne.numBordereau}}</td>
+			
 				<td><a href="#"></a>{{ligne.dateCreation| date('d-m-Y') }}</td>	
 		<td class="sorting_1">{{ligne.statut}}</td>
-		<td><a href="#">{{ligne.posteDepart.nomPoste}}</a></td>
-				<td class="sorting_1">{{ligne.posteArrive.nomPoste }}</td> 
+		<td><a href="#">{{ligne.posteDepart.localisation}}</a></td>
+				<td class="sorting_1">{{ligne.posteArrive.localisation }}</td> 
 <td>		
-<button type="submit"  href="{{ path('backend_choisir')}}" class="btn btn-success"><i class="icon-checkmark4
-">  Confirmer </i></button></td>
+<button type="submit"  href="" class="btn btn-success"><i class="icon-checkmark4">  Confirmer </i></button></td>
 		</tr >
-							
+			{% endfor %}					
 	</table>
-		{% endfor %}	
+		
 				
 				<!-- /custom Bootstrap inputs -->
 
-
-				
-										
-
-
-			</div>
+	</div>
 			<!-- /content area -->
 {% endblock %}

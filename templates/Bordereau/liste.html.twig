@@ -1,5 +1,6 @@
 {% extends 'home.html.twig' %}
 {% block title %} 
+liste des bordereaux
  {% endblock %}
 
 {% block body %}
@@ -40,7 +41,7 @@
 			posteDarrive
 		</th>
 			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
-			transporeteur
+			Livreur
 		</th>
 			<th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">
 			agent
@@ -51,13 +52,14 @@
 		</th>
 	</tr>
     </thead>
-<tbody> {% for ligne in liste %}
+<tbody>
+ {% for ligne in liste %}
 <tr role="row" class="even">
-		<td class="sorting_1">{{ligne.numBordereau}}</td>
+		<td class="sorting_1">{{ligne.id }}</td>
 			<td class="sorting_1">{{ligne.dateCreation| date('d-m-Y') }}</td>
 				<td><a href="#">{{ligne.statut}}</a></td>	
-		<td class="sorting_1">{{ligne.posteDepart.nomPoste}} </td>
-		<td><a href="#">{{ligne.posteArrive.nomPoste }}</a></td>
+		<td class="sorting_1">{{ligne.posteDepart.localisation}} </td>
+		<td><a href="#">{{ligne.posteArrive.localisation }}</a></td>
 				<td class="sorting_1">{{ligne.Livreur.nom}}</td> 
 			<td><a href="#">{{ligne.agent.nom }}</a></td>
 		
@@ -72,6 +74,7 @@
 	
 		<a class="btn btn-outline-danger"  href="{{ path('backend_bordereau_delete', { 'id': ligne.id }) }}">Supprimer</a>
 		</td>
+		
 	</div>
 	</tr>{% endfor %}
     </tbody>	

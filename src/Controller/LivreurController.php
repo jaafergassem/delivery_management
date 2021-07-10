@@ -103,19 +103,18 @@ class LivreurController extends AbstractController
     public function affecter(Request $request)
     {
 
-        $Livreur = new Livreur();
-        $form = $this->createForm(AffecterType::class, $Livreur);
+       
+        $form = $this->createForm(AffecterType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-           
-            $this->form->bind($request->getParameter('matriculeCamion'));
-
-            $this->form->bind($request->getParameter('nom'));
+            $data = $form->getData() ;
           
+            Dump($data) ;
+            Die() ;
             
             $request->getSession()->getFlashBag()->add('success', 'ajout avec succée !');
             // return $this->redirectToRoute('backend_livreur_affectationliste');

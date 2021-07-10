@@ -1,5 +1,5 @@
 {% extends 'home.html.twig' %}
-{% block title %} Ajouter des livreurs {% endblock %}
+{% block title %} Ajouter des Admins {% endblock %}
 
 {% block body %}
 
@@ -110,7 +110,7 @@
 						<div class="form-group row">
 							<label class="col-form-label col-md-2">CIN</label>
 							<div class="col-md-10">
-								{{ form_widget(form.cin, {'attr': {'class':'form-control','placeholder': 'Donner le numéro identité  du Administrateur...'}}) }}
+								{{ form_widget(form.cin, {'attr': {'class':'form-control','maxlength':'8','placeholder': 'Donner le numéro identité  du Administrateur...'}}) }}
 							</div>
 						</div>
 
@@ -124,7 +124,7 @@
 						<div class="form-group row">
 							<label class="col-form-label col-md-2">Numéro Telephone</label>
 							<div class="col-md-10">
-								{{ form_widget(form.numTelephone, {'attr': {'class':'form-control','placeholder': 'Donner numéro de telephone  du Administrateur...'}}) }}
+								{{ form_widget(form.numTelephone, {'attr': {'class':'form-control','maxlength':'8','placeholder': 'Donner numéro de telephone  du Administrateur...'}}) }}
 							</div>
 						</div>
 						

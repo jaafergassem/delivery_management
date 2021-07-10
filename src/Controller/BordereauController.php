@@ -56,13 +56,14 @@ class BordereauController extends AbstractController
             $bordereau->setDateCreation($now);
             $bordereau->setAgent($user);
             $bordereau->setStatut('stock');
+         
 
             $bordereau->setPosteDepart($postedepart);
             
          
               
            $variable= ''.$bordereau->getId();
-           $bordereau->setnumBordereau($variable);
+       
            
 
            
@@ -113,6 +114,19 @@ class BordereauController extends AbstractController
         return $this->render('bordereau/liste.html.twig', ['liste' => $liste]);
     }
 
+
+
+    
+
+
+
+
+
+
+
+
+
+
     /**
      * @Route("/delete/{id}", name="_delete")
      
@@ -134,21 +148,6 @@ class BordereauController extends AbstractController
 
 
 
-
-    
-     /**
-     * @Route("/choisir", name="_choisir")
-     */
-    public function choisir(Request $request)
-    {
-       
-    
-    
-        $liste = $this->BordereauService->getBordereau();
-        return $this->render('bordereau/choisir.html.twig', ['liste' => $liste]);
-    
-            
-    }
 
 
 
